@@ -2,27 +2,27 @@ import asyncHandler from "express-async-handler"
 import conversationModel from "../models/conversationModel.js"
 import MessageModel from "../models/messageModel.js"
 
-//   Create conversation
-//   POST api/conversation/:userId/
-//   Private
+// @desc   Create conversation
+// @route  POST api/conversation/:userId/
+// @access Private
 export const createConversation = asyncHandler(async (req, res) => {
     let newConversation = new conversationModel(req.body)
     newConversation = await newConversation.save()
     res.status(201).json(newConversation)
 })
 
-//   all conversations
-//   POST api/conversation/:userId/
-//   Private
+// @desc   all conversations
+// @route  POST api/conversation/:userId/
+// @access Private
 export const allConversations = asyncHandler(async (req, res) => {
     const userId = req.user.id
     let conversations = await conversationModel.find({ members: { $elemMatch: { memberId: userId } } })
     res.status(200).json(conversations)
 })
 
-//   Delete conversation
-//   DELETE api/conversation/:userId/:cid
-//   Private
+// @desc   Delete conversation
+// @route  DELETE api/conversation/:userId/:cid
+// @access Private
 export const deleteConversation = asyncHandler(async (req, res) => {
     const { cid } = req.params
     await Promise.all([

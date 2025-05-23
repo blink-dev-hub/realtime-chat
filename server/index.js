@@ -17,7 +17,7 @@ const port = process.env.PORT || 5000
 
 async function connect() {
     try {
-        mongoose.connect("mongodb://localhost:27017/chatdb");
+        mongoose.connect(process.env.MONGO);
         console.log('connected to mongodb')
     } catch (error) {
         throw error

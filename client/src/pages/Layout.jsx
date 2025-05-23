@@ -10,7 +10,7 @@ export default function Layout({ user }) {
             <FirstSidebar />
             <SecondSidebar user={user} />
             <section className="relative overflow-hidden h-screen max-h-screen bg-gray-900 w-[88rem] flex-grow sm:px-20 px-10">
-                {/* <Outlet /> */}
+                <Outlet />
             </section>
             <Profile user={user} />
         </section>

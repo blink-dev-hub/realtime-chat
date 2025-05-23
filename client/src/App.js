@@ -37,7 +37,11 @@ function App() {
       dispatch(allRooms())
     }
 
-    const newSocket = io('http://localhost:3001', { query: { id: user._id } })
+    // const newSocket = io('http://localhost:3001', { query: { id: user._id } })
+    // const newSocket = io('https://socket-chat-mern.herokuapp.com', { query: { id: user._id } })
+    const newSocket = io("https://premium-neck-production.up.railway.app", {
+      query: { id: user._id },
+    })
     dispatch(setSocket(newSocket))
 
     return () => {

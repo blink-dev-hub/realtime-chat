@@ -3,26 +3,26 @@ import RoomModel from '../models/roomModel.js'
 import MessageModel from '../models/messageModel.js'
 import mongoose from 'mongoose'
 
-//   Get rooms
-//   GET api/room/:userId
-//   Private
+// @desc   Get rooms
+// @route  GET api/room/:userId
+// @access Private
 export const getRooms = asyncHandler(async (req, res) => {
     const allRooms = await RoomModel.find({ members: { $in: [req.user.id] } })
     res.status(200).json(allRooms)
 })
 
-//   Create room
-//   POST api/room/:userId
-//   Private
+// @desc   Create room
+// @route  POST api/room/:userId
+// @access Private
 export const createRoom = asyncHandler(async (req, res) => {
     let newRoom = new RoomModel(req.body)
     newRoom = await newRoom.save()
     res.status(201).json({ newRoom, message: 'Successfully created' })
 })
 
-//   Join room
-//   PUT api/room/:userId
-//   Private
+// @desc   Join room
+// @route  PUT api/room/:userId
+// @access Private
 export const joinRoom = asyncHandler(async (req, res) => {
     // const rooms = await RoomModel.find()
 
@@ -49,9 +49,9 @@ export const joinRoom = asyncHandler(async (req, res) => {
     res.status(200).json({ room, message: 'Successfully joined' })
 })
 
-//   Leave room
-//   DELETE api/room/:userId/:roomId
-//   Private
+// @desc   Leave room
+// @route  DELETE api/room/:userId/:roomId
+// @access Private
 export const leaveRoom = asyncHandler(async (req, res) => {
     const { roomId } = req.params
 

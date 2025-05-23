@@ -3,9 +3,9 @@ import User from '../models/UserModel.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
-//   Register user
-//   POST api/auth/register
-//   Public
+// @desc   Register user
+// @route  POST api/auth/register
+// @access Public
 export const registerUser = asyncHandler(async (req, res) => {
     const { username, email, password, imageName, imageUrl } = req.body
 
@@ -37,9 +37,9 @@ export const registerUser = asyncHandler(async (req, res) => {
     res.status(201).json(user)
 })
 
-//   Login user
-//   POST api/auth/login
-//   Public
+// @desc   Login user
+// @route  POST api/auth/login
+// @access Public
 export const loginUser = asyncHandler(async (req, res) => {
     const { email, pass } = req.body
 
