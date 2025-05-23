@@ -1,9 +1,9 @@
 import asyncHandler from 'express-async-handler'
 import RequestModel from '../models/requestModel.js'
 
-// @desc   Create request
-// @route  POST api/request/:userId
-// @access Private
+//   Create request
+//   POST api/request/:userId
+//   Private
 export const createNewRequest = asyncHandler(async (req, res) => {
     const { receiverId, senderId } = req.body
 
@@ -19,17 +19,17 @@ export const createNewRequest = asyncHandler(async (req, res) => {
     res.status(201).json({ message: 'Successfully sent request', newRequest })
 })
 
-// @desc   All requests
-// @route  GET api/request/:userId
-// @access Private
+//   All requests
+//   GET api/request/:userId
+//   Private
 export const allRequests = asyncHandler(async (req, res) => {
     const allRequests = await RequestModel.find({ $or: [{ senderId: req.user.id }, { receiverId: req.user.id }] })
     res.status(200).json(allRequests)
 })
 
-// @desc   Delete request
-// @route  DELETE api/request/:userId
-// @access Private
+//   Delete request
+//   DELETE api/request/:userId
+//   Private
 export const deleteRequest = asyncHandler(async (req, res) => {
     const { reqId, reqMessage } = req.body
     await RequestModel.deleteOne({ _id: reqId })
