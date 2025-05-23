@@ -31,7 +31,6 @@ app.get('/', (req, res) => {
     res.send('Hello from api')
 })
 
-app.use(errorHandler)
 
 app.listen(port, () => {
     console.log(`Running backend server at port ${port}`)
